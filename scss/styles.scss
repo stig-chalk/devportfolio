@@ -34,19 +34,21 @@
 */
 
 // Define base and accent colors
-$base-color: #3498db;
-$base-color-hover: darken($base-color, 10%);
+$base-color: #2a80c7;
+$base-color-hover: rgba(0,0,0,0);
 
 // Define background colors
-$background: #fff;
-$background-alt: #f2f2f5;
+$background: #333333;
+$background-alt: #292828;
+$menu-bg: rgba(0, 0, 0, 0.8);
 
 // Define border colors
-$border: #dcd9d9;
+$border: #1a1a1a;
+$border-focus: #3eb000;
 
 // Define text colors
-$heading: #374054;
-$text: #74808a;
+$heading: #fff;
+$text: #dbdbdb;
 
 /*
     ---------------------
@@ -87,6 +89,7 @@ $text: #74808a;
 body {
     font-family: 'Lato', sans-serif;
     font-size: 16px;
+    background-color: $background;
 
     &.active {
         overflow: hidden;
@@ -141,7 +144,7 @@ body {
 }
 
 header {
-    position: absolute;
+    position: ab;
     top: 0;
     left: 0;
     right: 0;
@@ -153,8 +156,9 @@ header {
     animation-duration: 0.75s;
 
     ul {
-        display: inline-block;
-        background: $background;
+        // display: inline-block;
+        background: $menu-bg;
+        backdrop-filter: blur(2px);
         text-align: center;
         padding: 10px;
         margin: 0;
@@ -164,22 +168,24 @@ header {
 
     li {
         display: inline-block;
+        margin: 0 20px;
     }
 
     a {
         display: block;
-        color: $base-color;
-        padding: 10px;
-
-        &:hover {
-            color: $base-color-hover;
-            text-decoration: none;
-            background: #eee;
-            border-radius: 4px;
-        }
+        color: $text;
+        padding: 3px;
+        font-weight: 400;
+        border-bottom: solid 2px rgba(0,0,0,0);
 
         &:focus {
-            color: $base-color;
+            color: $text;
+            text-decoration: none;
+            border-bottom: solid 2px $border-focus;
+        }
+
+        &:hover {
+            color: #fff;
             text-decoration: none;
         }
     }
@@ -246,6 +252,22 @@ footer {
         margin: 0;
         color: $text;
     }
+
+    span {
+        color: darken($text, 20%);
+        font-size: 10px;
+
+        img {
+            height: 20px;
+            width: 20px;
+            filter: invert(50%);
+            margin-right: 5px;
+        }
+
+        a {
+            color: darken($text, 20%);
+        }
+    }
 }
 
 .top {
@@ -258,7 +280,7 @@ footer {
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 3px solid lighten($text, 25%);
+        border: 3px solid lighten($base-color, 25%);
         text-align:center;
     }
 
@@ -296,13 +318,12 @@ footer {
     display: inline-block;
     color: #fff;
     padding: 15px 25px;
-    border: 3px solid #fff;
-    border-radius: 30px;
+    // border: 3px solid #fff;
+    // border-radius: 30px;
     @include transition();
 
     &:hover {
         color: $base-color;
-        background: #fff;
         text-decoration: none;
     }
 }
@@ -350,7 +371,7 @@ footer {
     height: 100vh;
     min-height: 500px;
     max-height: 1080px;
-    background: url(../images/lead-bg.jpg);
+    background: url(../images/webdevelopment-bg.jpg);
     background-size: cover;
     padding: 15px;
     overflow: hidden;
@@ -365,21 +386,22 @@ footer {
     text-align: center;
 
     h1, h2 {
-        margin: 0;
+        margin: 0px;
     }
 
     h1 {
         color: #fff;
-        font-weight: 900;
+        font-weight: 500;
         font-size: 5em;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         line-height: 0.9em;
+        margin-bottom: 10px;
     }
 
     h2 {
         color: lighten($base-color, 25%);
-        font-weight: 500;
+        font-weight: 300;
         font-size: 2.25em;
         margin-bottom: 15px;
     }
@@ -393,8 +415,9 @@ footer {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba($base-color-hover, 0.8);
+    background: rgba($base-color-hover, 0.6);
     z-index: 1;
+    backdrop-filter: blur(3px);
 }
 
 #lead-down {
@@ -507,8 +530,8 @@ footer {
 
 .vtimeline-content {
     margin-left: 350px;
-    background: #fff;
-    border: 1px solid #e6e6e6;
+    background: $background;
+    // border: 1px solid #e6e6e6;
     padding: 15px;
     border-radius: 3px;
     text-align: left;
@@ -567,7 +590,7 @@ footer {
     left: 0;
     top: 10px;
     font-weight: 300;
-    color: #374054;
+    color: $base-color;
 }
 
 /*
@@ -593,6 +616,8 @@ footer {
     padding: 15px;
     border: 1px solid $border;
     text-align: left;
+    background-color: $background-alt;
+    border-radius: 5px;
 
     h3 {
         font-weight: 500;
@@ -646,7 +671,7 @@ footer {
     max-width: 900px;
     margin: 0 auto 30px auto;
     overflow: hidden;
-    background: #fff;
+    background: $background;
     border-radius: 4px;
 }
 
@@ -712,13 +737,14 @@ footer {
 
     li {
         display: inline-block;
-        margin: 7px;
+        margin: 5px;
         padding: 5px 10px;
         color: $heading;
-        background: darken($background-alt, 5%);
+        background: $background-alt;
         list-style: none;
         cursor: default;
-        font-size: 1.2em;
+        font-size: 1em;
+        border-radius: 5px;
     }
 }
 
@@ -730,7 +756,7 @@ footer {
 
 #contact {
     padding: 50px 15px;
-    background: $base-color;
+    background: darken($base-color, 25%);
     text-align: center;
 
     h2 {
@@ -749,18 +775,18 @@ footer {
         width: 100%;
         padding: 10px;
         border-radius: 4px;
-        border: none;
+        border: solid 1px darken($base-color, 30%);
         margin-bottom: 10px;
-        background: darken($base-color, 15%);
-        color: #fff;
+        background: darken($base-color, 30%);
+        color: $text;
         @include transition();
         @include placeholder {
-            color: #fff;
+            color: $text;
         }
 
         &:focus {
             outline: none;
-            background: darken($base-color, 25%);
+            border: solid 1px darken($base-color, 10%);
         }
     }
 
@@ -772,17 +798,18 @@ footer {
     button {
         display: block;
         width: 100%;
-        background: #fff;
-        border-radius: 4px;
+        background: transparent;
+        // border-radius: 4px;
         padding: 5px 10px;
         border: none;
-        color: $base-color;
+        color: $border-focus;
         font-weight: 700;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         @include transition();
 
         &:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            color: lighten($border-focus, 10%);
         }
     }
 }

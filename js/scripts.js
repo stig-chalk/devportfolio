@@ -23,16 +23,22 @@
 
         e.preventDefault();
         var heading = $(this).attr('href');
+        console.log($('header').height())
         var scrollDistance = $(heading).offset().top;
-
-        $('html, body').animate({
-            scrollTop: scrollDistance + 'px'
-        }, Math.abs(window.pageYOffset - $(heading).offset().top) / 1);
 
         // Hide the menu once clicked if mobile
         if ($('header').hasClass('active')) {
             $('header, body').removeClass('active');
         }
+        // Recalculate the scrollDistance otherwise
+        else {
+            scrollDistance -= $('header').height();
+        }
+
+        $('html, body').animate({
+            scrollTop: scrollDistance + 'px'
+        }, Math.max(500, Math.abs(window.pageYOffset - $(heading).offset().top) / 3));
+
     });
 
     // Scroll to top
