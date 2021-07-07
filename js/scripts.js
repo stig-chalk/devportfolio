@@ -23,7 +23,6 @@
 
         e.preventDefault();
         var heading = $(this).attr('href');
-        console.log($('header').height())
         var scrollDistance = $(heading).offset().top;
 
         // Hide the menu once clicked if mobile
@@ -99,5 +98,82 @@
             $('#more-projects').fadeIn(300);
         });
     });
+
+
+    if ($('header').is(":visible")) {
+        change_header_bg();
+
+        document.addEventListener('scroll', () => {
+            change_header_bg();
+        }, true);
+
+        function change_header_bg() {
+        Y = window.pageYOffset + $('header').height() + 10;
+        lead_btm = $('div#lead-content').offset().top;
+
+        if (Y < lead_btm) {
+            $('header ul').addClass('remove-background');
+            $('header ul').removeClass('shadow');
+        }
+        else {
+            $('header ul').removeClass('remove-background');
+            $('header ul').addClass('shadow');
+        }
+    }
+    }
+
+
+//     function try_fadeout(elem) {
+//         if (elem.is(":visible")) {
+//             elem.fadeOut('fast');
+//         }
+//     }
+// 
+//     function try_fadein(elem) {
+//         if (!elem.is(":visible")) {
+//             elem.fadeIn('fast');
+//         }
+//     }
+
+    // function isElementInView(elem) {
+    //     var top = elem.offset().top;
+    //     return (window.pageYOffset) <= (top + elem.height());
+    // }
+
+//     var previousScroll = 0;
+//     var elem = $('div#about');
+//     var btn = $('ul#menu li').first();
+// 
+//     // Trigger menu button 'inview' style when scroll to corresponding section
+//     document.addEventListener('scroll', () => {
+//         var currentScroll = $(this).scrollTop();
+//         var scroll_down = (currentScroll > previousScroll) ? true : false;
+// 
+// 
+//         if (isElementInView(elem)) {
+//             btn.first().addClass('inview');
+//         } else if (btn.first().hasClass('inview')){
+//             btn.first().removeClass('inview');
+// 
+//             next_elem = (scroll_down) ? elem.next() : elem.prev();
+//             next_btn = (scroll_down) ? btn.next() : btn.prev();
+// 
+//             if (scroll_down || btn.text().indexOf('About') < 0) {
+//                 elem = next_elem;
+//                 btn = next_btn;
+//                 console.log(btn.text())
+//             }
+//         }
+//         previousScroll = currentScroll;
+//     }, true);
+// 
+//     
+// 
+//     $("ul#menu li").each().on("click", () => {
+//         btn = $(this);
+//         elem = $(`div${btn.first().attr('href')}`);
+//         console.log(btn.text());
+//         btn.first().addClass('inview');
+//     })
 
 })(jQuery);

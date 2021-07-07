@@ -97,6 +97,10 @@ body {
     }
 }
 
+p {
+    line-height: 1.8em;
+}
+
 // No JS styles
 .no-js {
     #experience-timeline {
@@ -166,6 +170,10 @@ header {
         border-bottom-left-radius: 4px;
     }
 
+    .remove-background {
+        background: transparent;
+    }
+
     li {
         display: inline-block;
         margin: 0 20px;
@@ -178,17 +186,21 @@ header {
         font-weight: 400;
         border-bottom: solid 2px rgba(0,0,0,0);
 
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
         &:focus {
             color: $text;
             text-decoration: none;
             border-bottom: solid 2px $border-focus;
         }
-
-        &:hover {
-            color: #fff;
-            text-decoration: none;
-        }
     }
+
+    // .inview { 
+    //     border-bottom: solid 2px $border-focus;
+    // }
 
     &.active {
         display: block;
@@ -322,8 +334,8 @@ footer {
     // border-radius: 30px;
     @include transition();
 
-    &:hover {
-        color: $base-color;
+    &:hover, &:focus{
+        color: lighten($border-focus, 10%);
         text-decoration: none;
     }
 }
@@ -480,6 +492,20 @@ footer {
         color: $text;
         margin: 0;
     }
+}
+
+#about-content {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    img {
+        height: 100px;
+        width: 100px;
+        border-radius: 100px;
+        margin: 20px;
+    }
+
 }
 
 /*
@@ -926,7 +952,17 @@ footer {
         text-align: center;
 
         p {
-            text-align: left;
+            text-align: center;
+        }
+
+        #about-content {
+            display: block;
+        }
+
+        img {
+            height: 80px;
+            width: 80px;
+            margin: 10px;
         }
     }
 
