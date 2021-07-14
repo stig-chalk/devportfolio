@@ -122,6 +122,24 @@
     }
     }
 
+    $('#email-btn').on('click', () => {
+        var tempInput = document.createElement("input");
+        tempInput.value = "fenbihuichen@gmail.com";
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        $('.ui-tooltip-content').text("copied email address to clipboard")
+    });
+
+    $('#email-btn').tooltip({
+            tooltipClass: "uitooltip",
+            items: "#email-btn", 
+            content: "copy email address to clipboard",
+            position: { my: "center top", at: "center bottom+15" }
+    });
+        // $(this).tooltip("open");
+
 
 //     function try_fadeout(elem) {
 //         if (elem.is(":visible")) {

@@ -88,17 +88,33 @@ $text: #dbdbdb;
 
 body {
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
+    font-size: 17px;
     background-color: $background;
+
 
     &.active {
         overflow: hidden;
         z-index: -1;
     }
+
+    p {
+        line-height: 25px;
+        font-family: 'opensans-regular', sans-serif;
+        font-weight: lighter;
+    }
 }
 
-p {
-    line-height: 1.8em;
+.uitooltip {
+    z-index: 10;
+    color: darken($text, 20%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+    overflow: auto;
+    text-align: center;
+    width: fit-content;
+    cursor: pointer;
 }
 
 // No JS styles
@@ -168,10 +184,13 @@ header {
         margin: 0;
         border-bottom-right-radius: 4px;
         border-bottom-left-radius: 4px;
+        @include transition()
     }
 
     .remove-background {
         background: transparent;
+        backdrop-filter: none;
+        @include transition();
     }
 
     li {
@@ -292,12 +311,16 @@ footer {
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 3px solid lighten($base-color, 25%);
+        // border: 3px solid lighten($base-color, 25%);
         text-align:center;
     }
 
     i {
         color: $text;
+    }
+
+    i:hover {
+        color: #fff;
     }
 }
 
@@ -313,6 +336,15 @@ footer {
         display: inline-block;
         font-size: 1.25em;
         list-style: none;
+        margin: 5px;
+    }
+
+    i {
+        color: $text;
+        @include transition();
+    }
+    i:hover {
+        color: $base-color;
     }
 
     a {
@@ -328,14 +360,16 @@ footer {
 
 .btn-rounded-white {
     display: inline-block;
-    color: #fff;
-    padding: 15px 25px;
-    // border: 3px solid #fff;
-    // border-radius: 30px;
+    color: $text;
+    padding: 5px 25px;
+    // border: 2px solid $text;
+    border-radius: 30px;
+    font-size: 0.95em;
+    margin-bottom: 80px;
     @include transition();
 
     &:hover, &:focus{
-        color: lighten($border-focus, 10%);
+        color: lighten($border-focus, 20%);
         text-decoration: none;
     }
 }
@@ -368,6 +402,11 @@ footer {
     }
 }
 
+.sub-head {
+    color: $base-color;
+    font-weight: 500;
+}
+
 .background-alt {
     background: $background-alt;
 }
@@ -396,6 +435,7 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    font-size: 0.9em;
 
     h1, h2 {
         margin: 0px;
@@ -403,20 +443,40 @@ footer {
 
     h1 {
         color: #fff;
-        font-weight: 500;
-        font-size: 5em;
-        text-transform: uppercase;
+        font-weight: 650;
+        font-size: 6em;
+        // text-transform: uppercase;
         letter-spacing: 0.05em;
         line-height: 0.9em;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     h2 {
         color: lighten($base-color, 25%);
-        font-weight: 300;
-        font-size: 2.25em;
+        font-weight: 200;
+        font-size: 2em;
         margin-bottom: 15px;
     }
+
+    li {
+        display: inline;
+        cursor: pointer;
+        margin: 15px;
+        z-index: 11;
+    }
+
+    i {
+        color: $text;
+        @include transition();
+    }
+    i:hover {
+        color: $base-color;
+    }
+
+    ul {
+        padding: 0;
+    }
+    
 }
 
 #lead-overlay {
@@ -429,7 +489,7 @@ footer {
     left: 0;
     background: rgba($base-color-hover, 0.6);
     z-index: 1;
-    backdrop-filter: blur(3px);
+    // backdrop-filter: blur(3px);
 }
 
 #lead-down {
@@ -504,6 +564,7 @@ footer {
         width: 100px;
         border-radius: 100px;
         margin: 20px;
+        border: solid 2px $base-color;
     }
 
 }
@@ -556,7 +617,7 @@ footer {
 
 .vtimeline-content {
     margin-left: 350px;
-    background: $background;
+    background: $background-alt;
     // border: 1px solid #e6e6e6;
     padding: 15px;
     border-radius: 3px;
@@ -577,10 +638,13 @@ footer {
         margin: 0 0 15px 0;
     }
 
-    p {
+    li {
         color: $text;
         font-size: 0.9em;
-        margin: 0;
+    }
+
+    p {
+        margin: 10px;
     }
 }
 
@@ -642,7 +706,7 @@ footer {
     padding: 15px;
     border: 1px solid $border;
     text-align: left;
-    background-color: $background-alt;
+    background-color: $background;
     border-radius: 5px;
 
     h3 {
@@ -661,10 +725,24 @@ footer {
         color: $text;
         clear: both;
         font-weight: 500;
-        margin: 0 0 15px 0;
+        margin: 0;
     }
 
-    p, ul {
+    h5 {
+        // font-size: 1em;
+        // font-weight: 200;
+        color: $border-focus;
+        margin: 0 0 10px 0;
+    }
+
+    .bold {
+        font-size: 1.2em;
+        font-weight: 300;
+        color: #7e8890;
+        margin: 30px 0 5px 0;
+    }
+
+    p, ul{
         margin: 0;
         color: $text;
         font-size: 0.9em;
@@ -672,6 +750,14 @@ footer {
 
     ul {
         padding: 0 0 0 15px;
+    }
+
+    a {
+        color: $text;
+        &:hover {
+            color: $base-color;
+            text-decoration: none;
+        }
     }
 }
 
@@ -696,24 +782,61 @@ footer {
     position: relative;
     max-width: 900px;
     margin: 0 auto 30px auto;
-    overflow: hidden;
     background: $background;
     border-radius: 4px;
+    min-height: 300px;
+    padding: 20px;
+    // height: 800px;
 }
 
 .project-image {
+    // background-color: #000;
+    width: 200px;
     float: left;
+    height: 100%;
+
+    img {
+        position: absolute;
+        top: 50%;
+        width: 100px;
+        // height: 100px;
+        left: 120px;
+        transform: translate(-50%, -50%);
+    }
+
+    .small {
+        width: 50px;
+    }
+
+    p {
+        color: #000;
+        background-color: rgb(255, 217, 0);
+        padding: 10px;
+        font-family: 'Palatino', 'URW Palladio L', serif;
+        font-size: 40px;
+        margin: 0;
+        left: 120px;
+        border-radius: 15px;
+        font-weight: 800;
+        top: 50%;
+        transform: translate(-50%, -50%); 
+        position: absolute;
+        width: fit-content;
+        line-height: normal;
+    }
+
 }
 
 .project-info {
-    position: absolute;
+    // position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    margin-left: 300px;
+    // transform: translateY(-50%);
+    margin-left: 200px;
     padding: 15px;
+    
 
     h3 {
-        font-size: 1.5em;
+        font-size: 1.8em;
         font-weight: 300;
         color: $heading;
         margin: 0 0 15px 0;
@@ -721,8 +844,25 @@ footer {
 
     p {
         color: $text;
-        margin: 0 0 15px 0;
+        margin: 10px;
         font-size: 0.9em;
+
+    }
+    
+    li {
+        color: $text;
+        text-align: left;
+    }
+
+    .project-overview {
+        font-weight: 450;
+        font-size: 1em;
+    }
+
+    a:hover {
+        text-decoration: none;
+        @include transition();
+        color: lighten($base-color, 10%);
     }
 }
 
@@ -765,7 +905,7 @@ footer {
         display: inline-block;
         margin: 5px;
         padding: 5px 10px;
-        color: $heading;
+        color: $text;
         background: $background-alt;
         list-style: none;
         cursor: default;
